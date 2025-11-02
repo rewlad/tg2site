@@ -7,6 +7,7 @@ from tempfile import mkdtemp
 from typing import Dict, List, NoReturn
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from collections import defaultdict
 
 def never(exc: Exception) -> NoReturn:
     raise exc
@@ -14,11 +15,8 @@ def never(exc: Exception) -> NoReturn:
 def sel(v, *path): return v if not path or v is None else sel(v.get(path[0]), *path[1:])
 
 def grouped(pairs): # mutation allowed as low level optimization
-    res = {}
-    for k, v in pairs:
-        vs = res.get(k)
-        if vs is None: res[k] = [v]
-        else: vs.append(v)
+    res = defaultdict(list)
+    for k, v in pairs: res[k].append(v)
     return res
 
 def get_tg_updates(telegram_token: str, offset: int) -> dict:
