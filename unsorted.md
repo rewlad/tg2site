@@ -21,3 +21,11 @@ https://<TOKEN>@github.com/<owner>/<repo>.git
 https://github.com/settings/personal-access-tokens
 choose repo
 permissions → Contents → Read and write
+
+
+## Scala variants
+
+- `bot.sc`: Ammonite-based script (Scala 2 runtime, minimal dependencies)
+- `bot.scala-cli.sc`: Scala 3 Scala-CLI script (inline `using` deps, runnable via `scala-cli shebang`)
+
+Dockerfiles include intentional comments that explain staging/caching choices—keep them unless directions change.
