@@ -29,3 +29,10 @@ permissions → Contents → Read and write
 - `bot.scala-cli.sc`: Scala 3 Scala-CLI script (inline `using` deps, runnable via `scala-cli shebang`)
 
 Dockerfiles include intentional comments that explain staging/caching choices—keep them unless directions change.
+
+##
+
+App logic code, lines:
+scala, python - 50
+java - 70
+go - 90
