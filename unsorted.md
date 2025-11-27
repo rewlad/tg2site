@@ -30,9 +30,33 @@ permissions → Contents → Read and write
 
 Dockerfiles include intentional comments that explain staging/caching choices—keep them unless directions change.
 
-##
+## Мысли
 
-App logic code, lines:
-scala, python - 50
-java - 70
-go - 90
+Я тут ради интереса реализую одно и то же на разных технологиях.
+Созерцаю выразительность языков.
+Пока получается так - логика приложения (без учета совсем общих хелперов), строк:
+- scala, python - 50
+- java - 70
+- go - 90
+
+В go получается многословней - нету тернарного оператора (1) и вывода типов у лямбд (2).
+
+(1)
+`var a = c ? b() : d();`
+vs
+```
+var a AComplexType
+if c {
+    a = b()
+} else {
+    a = d()
+}
+```
+Реально оно вынесется в функцию, чтобы не засорять обзор: `a := getA(...`
+
+(2)
+`var a = f(k -> g(j,k));`
+vs
+`a := f(func(k AComplexType) AComplexType { return g(j,k) })`
+
+Это вещи, которые нельзя вынести в библиотеку (как тот же http server) и вызвать парой строк.

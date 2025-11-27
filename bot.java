@@ -1,8 +1,3 @@
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.databind.node.ArrayNode;
-
-//import tools.jackson.core.
-
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ArrayNode;
 
@@ -20,6 +15,8 @@ import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+// ----- general helpers -----
 
 // error util
 
@@ -107,7 +104,7 @@ void main(String[] args) {
     final var channelID = expect(k -> conf.get(k).asLong(),   "channel_id", "conf");
     final var token     = expect(k -> secrets.get(k).asString(),"telegram_token","secret");
 
-    final var gitRoot = unchecked(() -> Files.createTempDirectory("tg2site-")).resolve("repo");
+    final var gitRoot = unchecked(() -> Files.createTempDirectory("tg2site-")).resolve("repo"); //todo cleanup
     System.err.println("cloning "+repoURL+" branch "+branch);
     gitCloneRepo(gitRoot, repoURL, branch, "bot@tg2site");
     final var msgDir = unchecked(() -> Files.createDirectories(gitRoot.resolve(".tg2site-messages")));
